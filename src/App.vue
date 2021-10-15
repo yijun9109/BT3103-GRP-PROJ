@@ -38,8 +38,6 @@ export default {
 
 #nav a.router-link-exact-active {
   color: aliceblue;
-
-  
 }
 
 </style>
