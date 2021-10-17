@@ -1,8 +1,13 @@
 <template>
-  <div id="nav">
-    <router-link to= "/Home">Home</router-link>
+  <NavBar />
+  <router-view />
+  <!-- <div id="nav"> -->
+    
+    
+    <!-- <router-link to= "/Home">Home</router-link>
     <router-link to= "/Tips">Tips</router-link>
     <router-link to= "/ShoppingList">Shopping List</router-link>
+    <router-link to= "/LogIn"> Log in</router-link> -->
 
     <!-- <div id="logo">
         <a href="/App">
@@ -12,13 +17,17 @@
 
     <!-- need to add a button for login and also display the user name when logged in under "nav" -->
 
-  </div>
-  <router-view />
+  <!-- </div> -->
+  <!-- <router-view /> -->
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue"
 export default {
   name: "App",
+  components: {
+    NavBar,
+  }
 };
 </script>
 
@@ -31,8 +40,7 @@ export default {
   color: #2c3e50;
   margin: 0px;
 }
-
-#nav {
+/* #nav {
   padding-top: 30px;
   padding-bottom:30px;
   padding-right: 50px;
@@ -41,8 +49,7 @@ export default {
   margin-top: -10px;
   margin-left: -10px;
   width: 100%;
-}
-
+} */
 #logo-img {
   background: url('/src/assets/icon.png') no-repeat;
   position: absolute;
@@ -53,18 +60,14 @@ export default {
   /* width: 30px;
   height: 30px; */
 }
-
 #nav a {
   font-weight: bold;
   color: #2c3e50;
   padding-left: 10px;
   padding-right: 10px;
 }
-
 #nav a.router-link-exact-active {
   color: aliceblue;
-
   
 }
-
 </style>
