@@ -1,5 +1,5 @@
 <template>
-    <h1> Log In </h1>
+    <!-- <button id = "LogInButton" @click = "signIn()"> Log In </button> -->
   <div id = "firebaseui-auth-container"></div>
 </template>
 
@@ -34,6 +34,7 @@ export default {
 #firebaseui-auth-container{
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: coral;
 }
 
 </style>

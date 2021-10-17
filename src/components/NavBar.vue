@@ -1,9 +1,19 @@
 <template>
-  <div id = "logged" v-if = "user">
+  <div id = "container" >
+      <!-- <div id = "logged" v-if = "user"> -->
       <div id = "nav">
-          <router-link to="/Home"> Home </router-link> |
-          <router-link to="/Tips"> Tips </router-link> |
-          <router-link to="/ShoppingList"> ShoppingList </router-link> |
+          <router-link to="/Home"> Home </router-link> 
+          <router-link to="/Tips"> Tips </router-link> 
+          <router-link to="/ShoppingList"> ShoppingList </router-link> 
+          <router-link to ="/LogIn"> LogIn</router-link>
+          <LogIn />
+        </div>
+
+      <div id = "nav" v-if = "user">
+          <router-link to="/Home"> Home </router-link> 
+          <router-link to="/Tips"> Tips </router-link> 
+          <router-link to="/ShoppingList"> ShoppingList </router-link> 
+          <router-link to ="/LogIn"> LogIn</router-link>
           <LogOut />
       </div>
   </div>
@@ -19,7 +29,7 @@ export default {
         LogOut,
     },
 
-    data( {
+    data(){
         return {
             user:false,
         }
@@ -40,15 +50,15 @@ export default {
 #nav {
     padding: 30px;
     text-align: end;
-    background-color: orange;
+    background-color:rgb(247, 183, 65);
 }
 
 #nav a {
     font-weight: bold;
-    color: aliceblue;
+    color: white;
 }
 
 #nav a.router-link-exact-active {
-    color: skyblue;
+    color: rgb(119, 192, 221);
 }
 </style>
