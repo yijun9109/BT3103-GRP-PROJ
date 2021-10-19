@@ -1,5 +1,6 @@
 <template>
-    <h1> this is the log out page </h1>
+    <h1> Thank you for using MyFridge </h1>
+    <h2> Click on the Log Out Button to proceed</h2>
     <div id = "logout">
         <LogOutComponent />
     </div>
