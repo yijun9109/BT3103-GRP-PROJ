@@ -4,7 +4,6 @@ import Landing from '@/views/Landing.vue'
 import Home from '@/views/Home.vue'
 //Account matters
 import LogIn from '@/views/LogIn.vue'
-import LogInComponent from '@/components/LogIn.vue'
 import LogOut from '@/views/LogOut.vue'
 import Registration from '@/views/Registration.vue'
 import ForgetPassword from '@/views/ForgetPassword.vue'
@@ -30,11 +29,6 @@ const routes = [
         path: '/LogIn',
         name: 'LogIn',
         component: LogIn 
-    },
-    {
-        path: '/LogIn/LogIn',
-        name: 'LogInComponent',
-        component: LogInComponent
     },
     {
         path: '/LogOut',
