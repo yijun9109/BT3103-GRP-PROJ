@@ -38,10 +38,11 @@ export default {
 #LogOutButton {
     text-align: center;
     margin: auto;
+    background-color: white;
 }
 
 #LogOutButton:hover {
     color: aliceblue;
-    background-color: antiquewhite;
+    background-color: grey;
 }
 </style>

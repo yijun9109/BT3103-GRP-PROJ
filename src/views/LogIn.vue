@@ -1,19 +1,25 @@
 <template>
-    <h1> this is the log in page </h1>
+    <h1> Welcome to MyFridge </h1>
+    <h2> Log in or register to continue</h2> 
     <!-- <LogIn /> -->
     <div id = "login">
-        <LogIn />
+        <LogInComponent />
     </div>
 
 </template>
 
 <script>
-import LogIn from "@/components/LogIn.vue"
+import LogInComponent from "@/components/LogIn.vue"
 export default {
     name : "LogIn",
     components: {
-        LogIn
-    }
+        LogInComponent
+    },
+    // methods: {
+    //     signIn() => {
+
+    //     }
+    // }
 
 }
 </script>
