@@ -5,28 +5,36 @@
           <router-link to="/Home"> Home </router-link> 
           <router-link to="/Tips"> Tips </router-link> 
           <router-link to="/ShoppingList"> ShoppingList </router-link> 
-          <router-link to ="/LogIn"> LogIn</router-link>
-          <LogIn />
+          <router-link to = "/LogIn"> Log In </router-link>
+           <!-- <LogInComponent /> -->
+          
+         
+          
         </div>
+        <!-- <div id = "login">
+            <LogInComponent />
+        </div> -->
 
       <div id = "nav" v-if = "user">
           <router-link to="/Home"> Home </router-link> 
           <router-link to="/Tips"> Tips </router-link> 
           <router-link to="/ShoppingList"> ShoppingList </router-link> 
-          <router-link to ="/LogIn"> LogIn</router-link>
-          <LogOut />
+          <router-link to="/LogOut"> Log Out </router-link> 
+          <!-- <LogOut /> -->
       </div>
   </div>
 </template>
 
 <script>
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import LogOut from '@/components/LogOut.vue'
+//import LogOut from '@/components/LogOut.vue'
+// import LogInComponent from '@/components/LogIn.vue'
 export default {
     name:"NavBar",
 
     components: {
-        LogOut,
+       // LogOut,
+        // LogInComponent,
     },
 
     data(){
