@@ -11,9 +11,9 @@
                 <label for="storage"> Storage Location </label>
                 <select id="storage1">
                     <option disabled value="">Please select one</option>
-                    <option>Fridge</option>
-                    <option>Freezer</option>
-                    <option>Cabinet</option>
+                    <option value="Fridge">Fridge</option>
+                    <option value="Freezer">Freezer</option>
+                    <option value="Cabinet">Cabinet</option>
                 </select>
             </div>
 
@@ -31,22 +31,22 @@ const db = getFirestore(firebaseApp);
 
 export default {
     methods: {
-        async SaveData() {
+        async saveData() {
             var item = document.getElementById('item1').value
             var quantity = document.getElementById('quantity1').value
             var expiry = document.getElementById('expiry1').value
             var storage = document.getElementById('storage1').value
 
             try {
-                const docRef = await setDoc(doc(db, "Portfolio", item), {
-                    Item: item, Quantity: quantity, Expiry_Date: expiry, Storage_Location: storage
+                const docRef = await setDoc(doc(db, "Food", item), {
+                    item: item, quantity: quantity, expiry: expiry, storage: storage
                 })
-                document.getElementsById('input').reset();
+                document.getElementById('input').reset();
                 console.log(docRef)
-                this.$emit("edited")
             }
             catch (error) {
-                console.error("Error editing item: " + item)
+                console.error("Error adding item: " + item)
+                console.log(error)
             }
         }
     }

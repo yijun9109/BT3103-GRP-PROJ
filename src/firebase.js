@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB6IihBzQigVbOll7eyFD4io2CVXwdG3YE",
-  authDomain: "cpp-demo-b66ce.firebaseapp.com",
-  projectId: "cpp-demo-b66ce",
-  storageBucket: "cpp-demo-b66ce.appspot.com",
-  messagingSenderId: "624810965595",
-  appId: "1:624810965595:web:2d5322138b51f6f1925d7e"
+  apiKey: "AIzaSyAQWtXOJRhg6TNfRxu69tzC7_5joqS0afY",
+  authDomain: "foodexpiry-99ed1.firebaseapp.com",
+  projectId: "foodexpiry-99ed1",
+  storageBucket: "foodexpiry-99ed1.appspot.com",
+  messagingSenderId: "704631748225",
+  appId: "1:704631748225:web:332319a5cbac2378543f80"
 };
 
 const app = initializeApp(firebaseConfig);
