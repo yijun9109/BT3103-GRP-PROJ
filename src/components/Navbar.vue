@@ -43,7 +43,8 @@ export default {
   padding-bottom:30px;
   padding-right: 50px;
   text-align: right;
-  background: rgb(241, 220, 150);
+  /* background: rgb(241, 220, 150); */
+  background: white;
   margin-top: -10px;
   margin-left: -10px;
   width: 100%;
@@ -76,13 +77,15 @@ a {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  /* color: #2c3e50; */
+  color: #FFA235;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 #nav a.router-link-exact-active {
-  color: aliceblue;
+  /* color: aliceblue; */
+  color: #2c3e50;
 
   
 }

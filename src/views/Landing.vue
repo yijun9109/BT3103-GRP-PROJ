@@ -81,6 +81,10 @@ a:focus {  /* other possible attributes :focus, :visited, :link, :active */
     color: orange; 
 }
 
+a:hover {
+    color: orange;
+}
+
 img { 
     max-width: 80%;
     max-height: 80%;
@@ -97,7 +101,7 @@ p {
 
 .tile {
     color: white;
-    height: 400px;
+    height: 350px;
     width: 20%;
     /* border: 1px solid black; */
     background-color: white;
@@ -105,7 +109,7 @@ p {
     margin: 20px;
     left: 80px;
     top: 150px;
-    overflow: auto;
+    overflow: hidden;
     float: left;
 }
 
