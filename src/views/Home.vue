@@ -87,7 +87,8 @@ export default {
 
     display: inline-block;
     padding: 15px 25px;
-    background-image: linear-gradient(to right, #CC2E5D, #FF5858);
+    background-image: linear-gradient(to right, #db9387, #FBD09E);
+    /* background-image: linear-gradient(to right, #CC2E5D, #FF5858); */
     border-radius: 30px;
 
     color: #FFF;
@@ -167,7 +168,8 @@ export default {
 }
 
 .btn {
-    background-color: #FBD09E;
+    /* background-color: #FBD09E; */
+    background-image: linear-gradient(to right, #db9387, #FBD09E);
     height: 50px;
     width: 200px;
     border-radius: 30px;
