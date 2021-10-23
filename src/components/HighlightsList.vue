@@ -23,17 +23,17 @@
                 <th>Expiry Date</th>
             </tr>
         </table>
-
-        <button class='calendar' type = 'button' v-on:click='calendar()'> Link to my calendar </button> 
     </div>
+    
+    <button class='linktocalendar' type = 'button' onclick='document.getElementById("calendar").style.display = "block"'> Export Calendar </button> 
 
-    <div class = 'modal' v-if="showModal">
+    <div id='calendar' class = 'modal'>
         <div class = 'content'>
             <header id = 'modal-header'>
                 <slot name="header">
                     Choose your calendar!
                 </slot>
-                <button class = 'close' v-on:click='close()'>X</button>
+                <button class = 'close' onclick="document.getElementById('calendar').style.display = 'none'">X</button>
             </header>
             <div id="modal-body">
                 <input type="radio" name = 'selection' id = 'apple'>
@@ -44,6 +44,21 @@
                 <label for="google">Google</label>
             </div>
         </div>
+    </div>
+
+    <div id="delete" class="modal">
+        <span onclick="document.getElementById('delete').style.display = none" class="close" title="Close Modal">&times;</span>
+        <form class="modal-content">
+            <div class='content' id='deleteContent'>
+                <h1> Delete Item? </h1>
+                <p> Do you want to delete this item? </p>
+
+                <div class='confirmation'>
+                    <button type="button" id="cancel"> Cancel </button>
+                    <button type='button' id='confirm'  > Delete </button>
+                </div>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -59,19 +74,16 @@ export default {
         return{
             dropdown: false,
             selected: "None",
-            showModal: false,
+            clicked: "None"
         }
     },
     methods: { 
         filterUpdate(){
             this.dropdown = !this.dropdown
         },
-        calendar() {
-            this.showModal = true;
-        },
-        close() {
-            this.showModal = false;
-        },
+        click(id) {
+            this.clicked = id;
+        }
     },
 
     mounted() {
@@ -111,20 +123,18 @@ export default {
                 deleteBut.className = 'deletebwt'
                 deleteBut.id = String(data.items)
                 deleteBut.innerHTML = 'delete'
-                deleteBut.onclick = function() { 
-                    let b = false
-                    b = confirmDelete()
-                    if (b) {
-                        deleteItem(data.items)
+                deleteBut.onclick = async function() { 
+                    document.getElementById('delete').style.display = 'block'
+                    document.getElementById('confirm').onclick = function() {
+                        deleteItem(data.item)
+                        console.log("deleted")
+                        document.getElementById('delete').style.display = 'none'
                     }
+
                 }
 
                 cell6.appendChild(editBut)
                 cell7.appendChild(deleteBut)
-
-                function confirmDelete() {
-                     return confirm("Are you sure you want to delete this item?")
-                }
 
                 async function editItem(item) {
                     this.$emit('edit', item)
@@ -147,5 +157,29 @@ export default {
 </script>
 
 <style>
+#calendar {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+     top: 0;
+    width: 100%; /* Full width */
+     height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+     background-color: #474e5d;
+     padding-top: 50px;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
 
 </style>
