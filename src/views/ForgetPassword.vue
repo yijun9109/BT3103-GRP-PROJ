@@ -1,5 +1,5 @@
 <template>
-    <h1> this is the forgot password pass </h1>
+    <h1> this is the forgot password page </h1>
 </template>
 
 <script>
