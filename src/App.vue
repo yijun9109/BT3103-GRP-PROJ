@@ -1,10 +1,7 @@
 <template>
-  <NavBar />
-  <router-view />
-  <!-- <div id="nav"> -->
-    
-    
-    <!-- <router-link to= "/Home">Home</router-link>
+  <div id="nav">
+    <router-link to= "/Home">Home</router-link>
+    <router-link to="/editlist">Edit List</router-link>
     <router-link to= "/Tips">Tips</router-link>
     <router-link to= "/ShoppingList">Shopping List</router-link>
     <router-link to= "/LogIn"> Log in</router-link> -->
@@ -68,6 +65,5 @@ export default {
 }
 #nav a.router-link-exact-active {
   color: aliceblue;
-  
 }
 </style>

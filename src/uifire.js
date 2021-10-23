@@ -1,13 +1,15 @@
-import firebase from 'firebase/compat/app';
+
+import firebase from 'firebase/compat/app'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyD2ymbSpGQIt0FjCivCFvRRH2lg1wumLMc",
-    authDomain: "democcp-9ac90.firebaseapp.com",
-    projectId: "democcp-9ac90",
-    storageBucket: "democcp-9ac90.appspot.com",
-    messagingSenderId: "198044543758",
-    appId: "1:198044543758:web:c43a572b1d003ad21f455f"
+    apiKey: "AIzaSyAQWtXOJRhg6TNfRxu69tzC7_5joqS0afY",
+    authDomain: "foodexpiry-99ed1.firebaseapp.com",
+    projectId: "foodexpiry-99ed1",
+    storageBucket: "foodexpiry-99ed1.appspot.com",
+    messagingSenderId: "704631748225",
+    appId: "1:704631748225:web:332319a5cbac2378543f80"
   };
-  
-firebase.initializeApp(firebaseConfig);
-export default firebase;
+
+  firebase.initializeApp(firebaseConfig)
+
+  export default firebase;

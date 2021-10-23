@@ -2,6 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 //Landing and Home
 import Landing from '@/views/Landing.vue'
 import Home from '@/views/Home.vue'
+import List from '@/views/List.vue'
+import Edit from '@/views/Edit.vue'
 //Account matters
 import LogIn from '@/views/LogIn.vue'
 import LogOut from '@/views/LogOut.vue'
@@ -26,7 +28,17 @@ const routes = [
         component: Home 
     },
     {
-        path: '/LogIn',
+        path:'/list',
+        name: 'HighlightsList',
+        component: List
+    },
+    {
+        path: '/editlist',
+        name: 'EditList',
+        component: Edit
+    },
+    {
+        path: '/Login',
         name: 'LogIn',
         component: LogIn 
     },
