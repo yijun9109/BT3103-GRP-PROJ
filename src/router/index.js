@@ -16,7 +16,8 @@ import ShoppingList from "@/views/ShoppingList.vue";
 
 // testing
 import modal1 from "@/views/modal1.vue";
-import AddItem from "@/components/AddItem.vue";
+import AddModal from "@/views/AddModal.vue";
+import ExpiringList from "@/views/ExpiringList.vue";
 
 const routes = [
   {
@@ -70,14 +71,19 @@ const routes = [
     component: ShoppingList,
   },
   {
-    path: "/modal1",
+    path: "/modal1" /* view - test*/,
     name: "modal1",
     component: modal1,
   },
   {
-    path: "/AddItem",
-    name: "AddItem",
-    components: AddItem,
+    path: "/AddModal" /* view */,
+    name: "AddModal",
+    components: AddModal,
+  },
+  {
+    path: "/ExpiringList" /* view */,
+    name: "ExpiringList",
+    components: ExpiringList,
   },
 ];
 

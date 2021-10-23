@@ -3,15 +3,12 @@
     <div class = "bg">
         <div class = "box">
             <a href="/Home">keep track of your food items</a> 
-            <!-- for some reason cant edit the css properties if i used a routerlink here -->
         </div>
 
         <div class = "row">
             <div class = "tile milk">
-                <div class = "milk">
-                    <img src = "../assets/milk.jpg">
-                    <p>2-3 days after opening</p>
-                </div>
+                <img src = "../assets/milk.jpg">
+                <p>2-3 days after opening</p>
             </div>
             <div class = "tile beef">
                 <img src ="../assets/beef.png">
@@ -28,9 +25,7 @@
         </div>
 
     </div>
-
-    <!-- <h1> This is the landing page </h1> -->
-
+ 
 </template>
 
 <script>

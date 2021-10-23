@@ -9,7 +9,7 @@
         <!-- <img src = "../assets/warning.png"> not working -->
 
         <div class = "btn listview">
-            <p>LIST VIEW</p>
+            <a href="/ExpiringList">LIST VIEW</a>  <!-- CHANGE THIS TO CORRECT LINK -->
         </div>
 
 
@@ -31,28 +31,43 @@
 
     <section class = "drawers">
         <div class ="btn">
-            <p>ALL ITEMS</p>
+            <a href="/AddModal">ALL ITEMS</a>  <!-- CHANGE THIS TO CORRECT LINK -->
         </div>
 
-        <div class ="btn">
-            <p>ADD ITEMS</p> 
-                <!-- <AddItem/> -->
-
+        <div class ="btn" >
+            <a href="/AddModal">ADD ITEMS</a> 
         </div>
+
+        <button @click="add()">ADD TEST</button> <!-- how to get component to show up in centre -->
     </section>
 
     </div>
     <!-- <h1> This is the home page </h1> -->
+
+    <div class = 'container' v-if="showModal">
+        <AddItem/>
+    </div>
+
 </template>
 
 <script>
-// import AddItem from '../components/AddItem.vue'
 
+import AddItem from "../components/AddItem.vue"
 
 export default {
     name: "Home",
     components: {
-        // AddItem
+        AddItem
+    },
+    data() {
+        return {
+            showModal: false,
+        }
+    }, 
+    methods: {
+        add() {
+            this.showModal = true;
+        }
     }
 }
 </script>
@@ -89,18 +104,32 @@ export default {
     margin-right: 650px;
 }
 
+button { /* for add test 2 temp button */
+    background-color: #FBD09E;
+    height: 50px;
+    width: 200px;
+    border-radius: 30px;
+    text-align: center;
+    float: left;
+    filter: drop-shadow(1px 1px 2px #4a4a4a);
+    border: 0px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    line-height: 50px;
+}
+
 .listview {
     float: right;
     margin-top: -60px;
     margin-right: 40px;
 }
 
-.btn p {
+.btn a {
     font-size: 25px;
     font-weight: bold;
     color: white;
-    padding-bottom: 20px;
-    line-height: 5px;
+    line-height: 50px;
 }
 
 .drawers {
@@ -146,6 +175,34 @@ h2 {
     font-size: 30px;
     margin-top: 180px;
     text-align: center;
+}
+
+/* HOVER DIM */
+.tile:after {
+    /* add button for edit and delete */
+    /* content: 'Expiring on 15/10/21 \a Storage Location: Fridge';
+    white-space: pre;
+    color:#fff;
+    position: absolute;
+    width:100%; height:100%; */ /* why does it not take the whole width of tile but almost the whole screen */
+    /*top:0; left:0;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s; */
+}
+
+.tile:hover:after {
+    /* opacity: 1; */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh; 
 }
 
 </style>

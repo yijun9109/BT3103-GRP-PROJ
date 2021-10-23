@@ -14,9 +14,6 @@
 <script>
 export default {
   name: "navi",
-  mounted() {
-      this.setupFirebase();
-  },
   data() {
       return {
           loggedIn: false,
