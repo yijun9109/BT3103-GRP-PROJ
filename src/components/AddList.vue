@@ -33,8 +33,8 @@ export default {
     methods: {
         async saveData() {
             var item = document.getElementById('item1').value
-            var quantity = document.getElementById('quantity1').value
-            var expiry = document.getElementById('expiry1').value
+            var quantity = parseInt(document.getElementById('quantity1').value)
+            var expiry = document.getElementById('expiry1').value.toLowerCase()
             var storage = document.getElementById('storage1').value
 
             try {
