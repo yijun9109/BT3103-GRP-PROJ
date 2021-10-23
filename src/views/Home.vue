@@ -31,23 +31,25 @@
 
     <section class = "drawers">
         <div class ="btn">
-            <a href="/AddModal">ALL ITEMS</a>  <!-- CHANGE THIS TO CORRECT LINK -->
+            <a href="/Home">ALL ITEMS</a>  <!-- CHANGE THIS TO CORRECT LINK -->
         </div>
 
-        <div class ="btn" >
-            <a href="/AddModal">ADD ITEMS</a> 
-        </div>
+        <button class = "button" @click="showModal=true">ADD ITEM</button> <!-- how to get component to show up in centre -->
+        <transition name = "fade" appear>
+            <div class = "modal-overlay" v-if="showModal" @click="showModal=false"></div>
+        </transition>
 
-        <button @click="add()">ADD TEST</button> <!-- how to get component to show up in centre -->
+        <transition name = "slide" appear>
+            <div class="modal" v-if="showModal" @offModal="toggle()">
+                <!-- <h1>lorem ipsum</h1>
+                <p>lorem ipsum</p> -->
+                <AddItem/>
+                <!-- <button class = "button" @click = "showModal=false">X</button> -->
+            </div>
+        </transition>
     </section>
 
     </div>
-    <!-- <h1> This is the home page </h1> -->
-
-    <div class = 'container' v-if="showModal">
-        <AddItem/>
-    </div>
-
 </template>
 
 <script>
@@ -63,16 +65,92 @@ export default {
         return {
             showModal: false,
         }
-    }, 
+    },
+
     methods: {
-        add() {
-            this.showModal = true;
+        toggle() {
+            this.showModal= false
         }
     }
 }
 </script>
 
 <style scoped>
+
+.button {
+    /* new modal implementation */
+    appearance: none;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    display: inline-block;
+    padding: 15px 25px;
+    background-image: linear-gradient(to right, #CC2E5D, #FF5858);
+    border-radius: 30px;
+
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    box-shadow: 3px 3px rgba(0,0,0,0.2);
+    filter: drop-shadow(1px 1px 2px #4a4a4a);
+    transition: 0.4s ease-out;
+    
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    height: 50px;
+    width: 200px;
+    line-height: 6px;
+    text-align: center;
+}
+
+
+&:hover {
+    box-shadow: 6px 6px rgba(0,0,0,0.6);
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 98;
+    background-color: rgba(0,0,0, 0.3);
+}
+
+.modal {
+    position: fixed;
+    top: 50%; left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    width: 100%;
+    max-width: 400px;
+    background-color: #FFF;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.modal .button {
+    width: 60px;
+}
+
+.fade-enter-active, .fade-leave-active {
+    /* transition: opacity 1s; */
+    transition: transform .5s opacity 1s;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0; 
+    transform: translateY(50%) translateX(50vw);
+}
+
+.slide-enter-active, .slide-leave-active {
+    transition: transform .5s;
+}
+
+.slide-enter, .slide-leave-to {
+    transform: translateY(-50%) translateX(100vw);
+}
 
 .bg {
     background-image: url("../assets/fridge.png");
@@ -95,7 +173,8 @@ export default {
     border-radius: 30px;
     text-align: center;
     float: left;
-    filter:drop-shadow(1px 1px 2px #4a4a4a)
+    box-shadow: 3px 3px rgba(0,0,0,0.2);
+    filter:drop-shadow(1px 1px 2px #4a4a4a);
 }
 
 .btn:nth-child(1) { 
@@ -104,15 +183,7 @@ export default {
     margin-right: 650px;
 }
 
-button { /* for add test 2 temp button */
-    background-color: #FBD09E;
-    height: 50px;
-    width: 200px;
-    border-radius: 30px;
-    text-align: center;
-    float: left;
-    filter: drop-shadow(1px 1px 2px #4a4a4a);
-    border: 0px;
+.btn a {
     font-size: 25px;
     font-weight: bold;
     color: white;
@@ -125,12 +196,6 @@ button { /* for add test 2 temp button */
     margin-right: 40px;
 }
 
-.btn a {
-    font-size: 25px;
-    font-weight: bold;
-    color: white;
-    line-height: 50px;
-}
 
 .drawers {
     box-sizing: border-box;

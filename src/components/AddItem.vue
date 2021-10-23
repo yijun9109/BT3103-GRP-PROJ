@@ -11,10 +11,12 @@
     <!-- </div>     -->
   <!-- </div> -->
 
-    <br>
 
     <form id="myform">
-        <h2> ADD A NEW ITEM </h2>
+
+    <br>    
+        <h2> ADD A NEW ITEM </h2> <br>
+
             <div class = "formli">
 
             <label for="name">Item Name: </label>
@@ -46,7 +48,8 @@
             </span>
 
             <span class="cancel">
-                <button id="cancelbutton" type="button" v-on:click="goToSummary()">Cancel</button>
+                <button id="cancelbutton" type="button" @click="childParent()">Cancel</button>
+                <!-- the emit doesnt work child (add item comp) to parent (home view) -->
             </span>
 
         </div>
@@ -64,6 +67,7 @@ const db = getFirestore(firebaseApp);
 
   export default {
     name: "AddItem",
+    emits: ["offModal"],
     methods: {
         async savetofs() {
             var a = document.getElementById("name").value
@@ -84,9 +88,15 @@ const db = getFirestore(firebaseApp);
             }
         }, 
         goToSummary() {
-            this.$router.push('/Summary'); 
+            this.$router.push('/Summary');  // older
             // need to fix this part when i get the router hyperlink to summary
+
+        },
+        childParent() { // test
+            this.$emit("offModal");
+            // or tell parent in Home that showModal = false?? wld be better i think
         }
+
     }
     , data() {
       return {
@@ -105,6 +115,25 @@ const db = getFirestore(firebaseApp);
     height: 150px;
 } */
 
+* { 
+    /* new modal implementation */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    /* new modal implementation */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
 h2 { 
     /* background-color: rgb(129,184,99); */
 }
@@ -120,7 +149,8 @@ form {
     margin: auto;
     border: 1px solid #2c3e50;
     border-radius: 20px;
-    width: 30%;
+    /* width: 30%;  -- if full page used */
+    width: 100%; /* to fit inside modal */
 }
 
 input {
