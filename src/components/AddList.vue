@@ -26,7 +26,7 @@
 <script>
 import firebaseApp from '../firebase.js'
 import { getFirestore } from 'firebase/firestore'
-import { doc, setDoc }  from 'firebase/firestore'
+import { collection, query, doc, setDoc, where, getDocs }  from 'firebase/firestore'
 const db = getFirestore(firebaseApp);
 
 export default {
@@ -37,12 +37,23 @@ export default {
             var expiry = document.getElementById('expiry1').value.toLowerCase()
             var storage = document.getElementById('storage1').value
 
+            const food = collection(db, "Food");
+            const q = query(food, where('item', '==', item), where('expiry', '==', expiry), where('storage', '==', storage))
+            const que = await getDocs(q)
+
+            que.forEach((docs) => {
+                let data = docs.data()
+                quantity += data.quantity;
+            })
+
+
             try {
                 const docRef = await setDoc(doc(db, "Food", item), {
                     item: item, quantity: quantity, expiry: expiry, storage: storage
                 })
                 document.getElementById('input').reset();
                 console.log(docRef)
+                this.$emit("added")
             }
             catch (error) {
                 console.error("Error adding item: " + item)

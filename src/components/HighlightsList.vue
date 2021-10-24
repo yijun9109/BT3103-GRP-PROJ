@@ -75,7 +75,7 @@
 <script>
 import firebaseApp from "../firebase.js"
 import { getFirestore } from "firebase/firestore"
-import { collection, getDocs, doc, deleteDoc, query, where, orderBy } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc, query, where} from "firebase/firestore"
 import * as ics from 'ics'
 
 const db = getFirestore(firebaseApp);
@@ -173,13 +173,13 @@ export default {
                 foodList = await getDocs(q)
             }
 
-            let dictSize = Object.keys(this.orderByDict).length
-            if (dictSize > 0) { 
-                const q = query(collection(db, "Food"), orderBy("expiry"))   
-                foodList = await getDocs(q)
-            } else {
-                foodList = await getDocs(collection(db, "Food"))
-            }
+            //let dictSize = Object.keys(this.orderByDict).length
+            //if (dictSize > 0) { 
+            //    const q = query(collection(db, "Food"), orderBy("expiry"))   
+            //    foodList = await getDocs(q)
+            //} else {
+            //    foodList = await getDocs(collection(db, "Food"))
+            //}
             let index = 1
 
             foodList.forEach((docs) => {

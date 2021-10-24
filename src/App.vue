@@ -4,7 +4,8 @@
     <router-link to="/editlist">Edit List</router-link>
     <router-link to= "/Tips">Tips</router-link>
     <router-link to= "/ShoppingList">Shopping List</router-link>
-    <router-link to= "/LogIn"> Log in</router-link> -->
+    <router-link to= "/LogIn"> Log in</router-link>
+    <router-link to='/list'>List</router-link>
 
     <!-- <div id="logo">
         <a href="/App">
@@ -14,17 +15,13 @@
 
     <!-- need to add a button for login and also display the user name when logged in under "nav" -->
 
-  <!-- </div> -->
-  <!-- <router-view /> -->
+  </div>
+ <router-view />
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue"
 export default {
   name: "App",
-  components: {
-    NavBar,
-  }
 };
 </script>
 
