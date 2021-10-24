@@ -29,7 +29,7 @@ const routes = [
     },
     {
         path:'/list',
-        name: 'HighlightsList',
+        name: 'List',
         component: List
     },
     {

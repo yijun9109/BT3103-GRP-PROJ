@@ -1,3 +1,4 @@
+
 <template>
   <div id="nav">
     <router-link to= "/Home">Home</router-link>

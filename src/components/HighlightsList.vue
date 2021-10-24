@@ -3,24 +3,29 @@
     <div>
         <table id = "table" style="text-align: center">
             <tr>
+                <th> Index </th>
                 <th>Items</th>
-                <th>Quantity</th>
+                <th>Quantity
+                    <button id='quantityorder' v-on:click='quantityOrder()'> V </button>
+                </th>
                 <th>
                     <div>
                         <button id="dropdown" v-on:click="filterUpdate()"> Storage Location: {{selected}} </button>
                         <div class="dropdown-content" v-if="dropdown">
-                            <input type="radio" v-model="selected" name="None" id="none">
+                            <input type="radio" v-model="selected" name="Store" id="non" value="None">
                             <label for="none">None</label>
-                            <input type="radio" v-model="selected" name="Fridge" id="fridge" >
+                            <input type="radio" v-model="selected" name="Store" id="fridge" value="Fridge" >
                             <label for="fridge">Fridge</label>
-                            <input type="radio" v-model="selected" name="Freezer" id="freezer">
+                            <input type="radio" v-model="selected" name="Store" id="freezer" value="Freezer">
                             <label for="freezer"> Freezer </label>
-                            <input type="radio" v-model="selected" name="Cabinet" id="cabinet">
+                            <input type="radio" v-model="selected" name="Store" id="cabinet" value="Cabinet">
                             <label for="cabinet">Cabinet</label>
                         </div>
                     </div>
                 </th>
-                <th>Expiry Date</th>
+                <th>Expiry Date
+                    <button id='expiryorder' v-on:click='expiryOrder()'> I </button>
+                </th>
             </tr>
         </table>
     </div>
@@ -60,12 +65,18 @@
             </div>
         </form>
     </div>
+
+    <div>
+        <button type='button' v-on:click="run()">  Click to filter </button>
+        <button type='button' v-on:click='calendar()'>Cal Filter</button>
+    </div>
 </template>
 
 <script>
 import firebaseApp from "../firebase.js"
 import { getFirestore } from "firebase/firestore"
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore"
+import { collection, getDocs, doc, deleteDoc, query, where} from "firebase/firestore"
+import * as ics from 'ics'
 
 const db = getFirestore(firebaseApp);
 
@@ -74,22 +85,101 @@ export default {
         return{
             dropdown: false,
             selected: "None",
-            clicked: "None"
+            orderByDict: {},
+            orderByItems: false,
+            orderByQuantity: 0, 
+            orderByStorage: false,
+            orderByExpiry: 0
         }
     },
     methods: { 
         filterUpdate(){
             this.dropdown = !this.dropdown
         },
-        click(id) {
-            this.clicked = id;
-        }
-    },
 
-    mounted() {
-        async function display() {
+        quantityOrder() {
+            this.orderByQuantity += 1;
+            if (this.orderByQuantity % 3 == 1) {
+                this.orderByDict['quantity'] = 'asc'
+            } else if (this.orderByQuantity % 3 == 2) {
+                this.orderByDict['quantity'] = 'desc'
+            } else {
+                delete this.orderByDict.quantity;
+            }
+            this.run()
+        },
+
+        expiryOrder() {
+            this.orderByExpiry += 1;
+            if (this.orderByExpiry % 3 == 1) {
+                this.orderByDict['expiry'] = 'asc'
+            } else if (this.orderByExpiry % 3 == 2) {
+                this.orderByDict['expiry'] = 'desc'
+            } else {
+                delete this.orderByDict.expiry;
+            }
+            this.run()
+        },
+
+        clearEntry() {
+            var table = document.getElementById('table')
+            while (table.rows.length > 1) {
+                table.deleteRow(1)
+            }
+        },
+
+        calendar() {
+            var calEntry = []
+            var calarr = [];
+            var table = document.getElementById('table')
+            for (let i = 1; i < table.rows.length; i++) {
+                let cells = table.rows[i].cells;
+                for (let c = 0; c < 5; c++) {
+                    calarr.push(cells[c].innerHTML)
+                }
+                let date = String(calarr[4])
+                let moddate = date.split('-').map(function(x) {
+                    return parseInt(x, 10)
+                })
+                moddate.push(0)
+                moddate.push(0)
+                let name = "You have " + calarr[2] + " " + calarr[1] + " expiring today!"
+                let entry = {
+                    title: name,
+                    start: moddate,
+                    duration: {hours: 24, minutes: 0}
+                }
+                calEntry.push(entry)
+                calarr = []
+            }
+            console.log(calEntry)
+            ics.createEvents(calEntry, (error, value) => {
+                if (error) { 
+                    console.log(error)
+                }
+
+                console.log(value)
+            });
+                   
+        },
+
+        async run() { 
+            this.clearEntry()
             var foodList;
-            foodList = await getDocs(collection(db, "Food"))
+            if (this.selected == "None") {
+                foodList = await getDocs(collection(db, "Food"))
+            } else {
+                const q = query(collection(db, "Food"), where("storage", "==", this.selected))
+                foodList = await getDocs(q)
+            }
+
+            //let dictSize = Object.keys(this.orderByDict).length
+            //if (dictSize > 0) { 
+            //    const q = query(collection(db, "Food"), orderBy("expiry"))   
+            //    foodList = await getDocs(q)
+            //} else {
+            //    foodList = await getDocs(collection(db, "Food"))
+            //}
             let index = 1
 
             foodList.forEach((docs) => {
@@ -126,7 +216,7 @@ export default {
                 deleteBut.onclick = async function() { 
                     document.getElementById('delete').style.display = 'block'
                     document.getElementById('confirm').onclick = function() {
-                        deleteItem(data.item)
+                        this.deleteItem(data.item)
                         console.log("deleted")
                         document.getElementById('delete').style.display = 'none'
                     }
@@ -135,22 +225,26 @@ export default {
 
                 cell6.appendChild(editBut)
                 cell7.appendChild(deleteBut)
+                index += 1
 
                 async function editItem(item) {
                     this.$emit('edit', item)
                 }
-
-                async function deleteItem(item) {
-                    var i = item 
-                    await deleteDoc(doc(db, "Food", i))
-                    let tb = document.getElementById("table")
-                    while (tb.rows.length > 1) {
-                       tb.deleteRow(1)
-                    }
-                }
             })
-        }
-        display()
+        },
+
+        async deleteItem(item) {
+            var i = item 
+            await deleteDoc(doc(db, "Food", i))
+            let tb = document.getElementById("table")
+            while (tb.rows.length > 1) {
+                tb.deleteRow(1)
+             }
+         },
+    },
+
+    mounted() { 
+        this.run()
     }
 }
 
