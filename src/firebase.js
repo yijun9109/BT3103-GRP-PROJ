@@ -1,13 +1,16 @@
+
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBbmTrXiVLr2Odc4tHtMlypJs3IKi5YgUI",
-  authDomain: "myfridge-539ff.firebaseapp.com",
-  projectId: "myfridge-539ff",
-  storageBucket: "myfridge-539ff.appspot.com",
-  messagingSenderId: "1079458608744",
-  appId: "1:1079458608744:web:34402d834d8540e42beddd",
+  apiKey: "AIzaSyAQWtXOJRhg6TNfRxu69tzC7_5joqS0afY",
+  authDomain: "foodexpiry-99ed1.firebaseapp.com",
+  projectId: "foodexpiry-99ed1",
+  storageBucket: "foodexpiry-99ed1.appspot.com",
+  messagingSenderId: "704631748225",
+  appId: "1:704631748225:web:332319a5cbac2378543f80"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-export default firebaseApp;
+const app = initializeApp(firebaseConfig);
+
+export default app

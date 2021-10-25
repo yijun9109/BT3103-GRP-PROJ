@@ -6,7 +6,9 @@
           <router-link to="/Tips"> Tips </router-link> 
           <router-link to="/ShoppingList"> ShoppingList </router-link> 
           <router-link to = "/LogIn"> Log In </router-link>
-           <!-- <LogInComponent /> -->       
+           <!-- <LogInComponent /> -->
+          
+         
           
         </div>
         <!-- <div id = "login">

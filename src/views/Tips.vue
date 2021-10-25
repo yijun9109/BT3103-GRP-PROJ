@@ -1,5 +1,6 @@
 <template>
-    <h1> this is the tips page </h1>
+    <h1> This is the tips page </h1>
+
 </template>
 
 <script>
