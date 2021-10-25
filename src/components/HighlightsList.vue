@@ -163,6 +163,15 @@ export default {
                    
         },
 
+        async deleteItem(item) {
+            var i = item 
+            await deleteDoc(doc(db, "Food", i))
+            let tb = document.getElementById("table")
+            while (tb.rows.length > 1) {
+                tb.deleteRow(1)
+            }
+        },
+
         async run() { 
             this.clearEntry()
             var foodList;
@@ -215,9 +224,12 @@ export default {
                 deleteBut.innerHTML = 'delete'
                 deleteBut.onclick = async function() { 
                     document.getElementById('delete').style.display = 'block'
-                    document.getElementById('confirm').onclick = function() {
+                    document.getElementById('confirm').onclick = async function() {
                         this.deleteItem(data.item)
                         console.log("deleted")
+                        document.getElementById('delete').style.display = 'none'
+                    }
+                    document.getElementById('cancel').onclick = function() {
                         document.getElementById('delete').style.display = 'none'
                     }
 
@@ -232,15 +244,6 @@ export default {
                 }
             })
         },
-
-        async deleteItem(item) {
-            var i = item 
-            await deleteDoc(doc(db, "Food", i))
-            let tb = document.getElementById("table")
-            while (tb.rows.length > 1) {
-                tb.deleteRow(1)
-             }
-         },
     },
 
     mounted() { 
