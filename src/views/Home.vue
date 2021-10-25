@@ -87,7 +87,8 @@ export default {
 
     display: inline-block;
     padding: 15px 25px;
-    background-image: linear-gradient(to right, #CC2E5D, #FF5858);
+    background-image: linear-gradient(to right, #db9387, #FBD09E);
+    /* background-image: linear-gradient(to right, #CC2E5D, #FF5858); */
     border-radius: 30px;
 
     color: #FFF;
@@ -167,7 +168,8 @@ export default {
 }
 
 .btn {
-    background-color: #FBD09E;
+    /* background-color: #FBD09E; */
+    background-image: linear-gradient(to right, #db9387, #FBD09E);
     height: 50px;
     width: 200px;
     border-radius: 30px;
@@ -244,21 +246,23 @@ h2 {
 
 /* HOVER DIM */
 .tile:after {
-    /* add button for edit and delete */
-    /* content: 'Expiring on 15/10/21 \a Storage Location: Fridge';
+    /*add button for edit and delete */
+    content: 'Expiring on 15/10/21 \a Storage Location: Fridge';
     white-space: pre;
     color:#fff;
     position: absolute;
-    width:100%; height:100%; */ /* why does it not take the whole width of tile but almost the whole screen */
-    /*top:0; left:0;
+    width:100%; height:100%; /* why does it not take the whole width of tile but almost the whole screen */
+    top:0; left:0;
     background:rgba(0,0,0,0.6);
     opacity:0;
     transition: all 0.5s;
-    -webkit-transition: all 0.5s; */
+    -webkit-transition: all 0.5s; 
+    height: 250px;
+    width: 250px;
 }
 
 .tile:hover:after {
-    /* opacity: 1; */
+    opacity: 1;
 }
 
 .container {

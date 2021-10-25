@@ -9,6 +9,8 @@
         <router-link to= "/LogIn" v-else>Login</router-link>
     </div>
 
+    <router-view></router-view>
+
 </template>
 
 <script>
